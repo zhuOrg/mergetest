@@ -1,5 +1,5 @@
 name: test
-on: [pull_request]
+on: push
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -10,3 +10,14 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Notified on success
+        if: success()
+        run: echo notify me on build success
+
+      - name: Notified on failure
+        if: failure()
+        run: echo notify me on build failure
+
+      - name: Notified on cancelled
+        if: cancelled()
+        run: echo notify me on build cancelled
