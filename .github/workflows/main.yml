@@ -11,7 +11,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-
+      - run: dddd
       - name: Notified on success
         if: success()
         run: echo notify me on build success
