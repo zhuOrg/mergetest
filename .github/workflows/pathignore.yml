@@ -1,9 +1,10 @@
 name: test ignore path 
 on: 
   push:
-    paths-ignore:
-      - 'dev2.txt'
-      - 'dev.txt'
+    paths:
+      - '**'
+      - '!dev2.txt'
+      - '!dev.txt'
 
 jobs:
   build:
