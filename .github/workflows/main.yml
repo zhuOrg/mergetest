@@ -1,5 +1,9 @@
-name: test
-on: push
+name: test path filter
+on: 
+  push:
+    paths:
+      - 'dev2.txt'
+      - 'dev.txt'
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
