@@ -1,9 +1,6 @@
-name: test path filter
-on: 
-  push:
-    paths:
-      - 'dev2.txt'
-      - 'dev.txt'
+name: fast farword merge
+on:  push
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
