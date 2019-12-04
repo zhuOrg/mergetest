@@ -15,5 +15,8 @@ jobs:
     - name: echo
       run: |
           echo ${{ steps.filepath.outputs.commitpath }}
+    - name: publish
+      if: Contains(steps.filepath.outputs.commitpath, 'dev.txt') || Contains(steps.filepath.outputs.commitpath, 'dev2.txt')
+      run: echo 'include path'
 
     
