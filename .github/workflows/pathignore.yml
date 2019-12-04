@@ -18,5 +18,13 @@ jobs:
     - name: publish
       if: Contains(steps.filepath.outputs.commitpath, 'dev.txt') || Contains(steps.filepath.outputs.commitpath, 'dev2.txt')
       run: echo 'include path'
+   
+   
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v1
+   
 
     
