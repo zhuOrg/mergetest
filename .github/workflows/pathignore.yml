@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1 
@@ -20,9 +20,9 @@ jobs:
       run: echo 'include path'
    
    
-  test:
+  build:
     runs-on: ubuntu-latest
-    needs: build
+    needs: docker
     steps:
       - uses: actions/checkout@v1
    
