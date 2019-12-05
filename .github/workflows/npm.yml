@@ -1,0 +1,36 @@
+name: Node CI 1205
+
+on: push
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v1
+
+    - uses: actions/setup-node@v1
+
+      with:
+
+        node-version: 12
+
+        registry-url: 'https://registry.npmjs.org'
+
+      env:
+
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+
+    - name : "instll npm"
+      run: |
+          npm install
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# `npm rebuild` will run all those post-install scripts for us.
+
+    - run: npm rebuild && npm run prepare --if-present
