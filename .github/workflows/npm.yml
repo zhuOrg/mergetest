@@ -1,6 +1,6 @@
 name: Node CI 1205
 
-on: push
+on: check_run
 
 jobs:
 
