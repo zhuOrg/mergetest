@@ -20,3 +20,5 @@ jobs:
 # `npm rebuild` will run all those post-install scripts for us.
     - run: npm rebuild && npm run prepare --if-present
     - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
