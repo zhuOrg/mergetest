@@ -1,5 +1,5 @@
 name: docker and test 
-on:  [push]
+on:  check_run
 
 jobs:
   docker:
