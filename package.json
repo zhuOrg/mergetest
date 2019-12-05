@@ -1,0 +1,30 @@
+
+{
+
+  "name": "@zhuOrg/mergetest",
+
+  "version": "1.0.0",
+
+  "description": "test dependency",
+
+  "main": "index.js",
+
+  "scripts": {
+
+    "test": "echo \"Error: note2 no test specified\" && exit 1"
+
+  },
+
+  "author": "zhu5201314",
+
+  "license": "ISC",
+
+  "dependencies": {
+
+    "@zhuorg/customepack": "^1.0.1",
+
+    "foo" : "1.0.0 - 2.9999.9999"
+
+  }
+
+}
