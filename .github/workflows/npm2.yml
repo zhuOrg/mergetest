@@ -1,5 +1,5 @@
 name: npm2
-on: check_run
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
