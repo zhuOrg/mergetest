@@ -15,7 +15,7 @@ jobs:
       - name: check1
         id: filepath
         run: |
-           echo ::set-output name=commitpath::$(git diff-tree --no-commit-id --name-only -r ${{env:COMMITID}} )
+           echo ::set-output name=commitpath::$(git diff-tree --no-commit-id --name-only -r ${{env.COMMITID}} )
         env: 
           COMMITID: ${{github.event.after}}
       - name: Notified on success
