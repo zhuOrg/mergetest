@@ -13,6 +13,6 @@ jobs:
       - name: show commit message
         run : echo $commitmsg
       - name: step1
-        if: contains( commitmsg , 'try' )
+        if: contains( env.commitmsg , 'try' )
         run: echo hello
       
