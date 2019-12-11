@@ -1,5 +1,5 @@
 name: fast farword merge
-on:  push
+on: issue_comment
 
 jobs:
   build-and-test:
