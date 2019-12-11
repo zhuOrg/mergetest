@@ -3,29 +3,13 @@ on: pull_request
 
 jobs:
   build-and-test:
+    if: contains( $(git log --format=%B -n 1 ${{ github.event.after }}), 'try' )
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-        
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: check1
         id: filepath
         run: |
            echo ::set-output name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
       - name: show commit message
         run : echo ${{ steps.filepath.outputs.commitmsg }}
-      - name: Notified on success
-        if: success()
-        run: echo notify me on build success
-
-      - name: Notified on failure
-        if: failure()
-        run: echo notify me on build failure
-
-      - name: Notified on cancelled
-        if: cancelled()
-        run: echo notify me on build cancelled
+      
