@@ -17,7 +17,7 @@ jobs:
         run: |
            echo ::set-output name=commitpath::$(git diff-tree --no-commit-id --name-only -r ${{ github.event.after }})
       - name: show changed files
-      - run : echo ${{ steps.filepath.outputs.commitpath }}
+        run : echo ${{ steps.filepath.outputs.commitpath }}
       - name: Notified on success
         if: success()
         run: echo notify me on build success
