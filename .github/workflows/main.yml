@@ -3,7 +3,7 @@ on: pull_request
 
 jobs:
   build-and-test:
-    if: contains( $(git log --format=%B -n 1 ${{ github.event.after }}), 'try' )
+    if: contains( $(git log --format=%B -n 1 github.event.after ), 'try' )
     runs-on: ubuntu-latest
     steps:
       - name: check1
