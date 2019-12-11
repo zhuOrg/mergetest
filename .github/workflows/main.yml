@@ -12,7 +12,12 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-        
+      - name: check1
+        id: filepath
+        run: |
+           echo ::set-output name=commitpath::$(git diff-tree --no-commit-id --name-only -r $COMMITID }})
+        env: 
+          COMMITID: ${{github.event.after}}
       - name: Notified on success
         if: success()
         run: echo notify me on build success
