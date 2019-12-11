@@ -1,4 +1,4 @@
-name: fast farword merge
+name: filter commit nessage
 on: pull_request
 
 jobs:
