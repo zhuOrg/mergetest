@@ -1,14 +1,12 @@
   
 name: workflow name
 
-on: [push]
-
+on: 
+  release:
+    types: [created]
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Dump GitHub context
