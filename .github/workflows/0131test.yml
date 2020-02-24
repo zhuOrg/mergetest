@@ -2,7 +2,7 @@
 name: workflow name
 
 on: 
-  release:
+  push:
 
 jobs:
   build:
