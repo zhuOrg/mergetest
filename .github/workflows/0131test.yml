@@ -2,7 +2,7 @@
 name: workflow name
 
 on: 
-  push:
+  check_suite:
 
 jobs:
   build:
