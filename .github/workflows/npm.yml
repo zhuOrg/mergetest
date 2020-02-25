@@ -27,6 +27,7 @@ jobs:
 
     - name : "instll npm"
       run: |
+          cat /home/runner/work/_temp/.npmrc
           npm install
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
