@@ -14,17 +14,3 @@ trigger main.yml
 dddd
 nwe feature
 ddddd
-8888
-555
-fff
-dddd
-ggg
-kkk
-hhh
-jjj
-jjjjjjj
-jjjj
-yuyuyg
-jjjjj
-hhhh 
-55555
