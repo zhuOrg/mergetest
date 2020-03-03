@@ -1,5 +1,5 @@
 name: Delete branch
-on: delete
+on: [push, delete]
 
 jobs:
   build-and-test:
