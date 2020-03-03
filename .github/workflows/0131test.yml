@@ -1,16 +1,22 @@
-  
-name: workflow name
-
-on: 
-  release:
-    types: [created]
-
+name: PR merge
+on:
+  pull_request:
+    types: [opened,ready_for_review,edited]
+    branches:
+      - master
 jobs:
-  build:
+ merge:
+    name: Merge pull request
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v2
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+      - name: Merge
+        uses: actions/github-script@0.8.0
+        with:
+          script: |
+            await github.pulls.merge({
+              owner: context.payload.repository.owner.login,
+              repo: context.payload.repository.name,
+              pull_number: context.payload.pull_request.number
+            })
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
