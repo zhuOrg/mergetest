@@ -12,7 +12,8 @@ jobs:
     steps:
 
     - uses: actions/checkout@v1
-    
+    - name: Try to fail
+      run: exit 1
     - uses: actions/setup-node@v1
       with:
         node-version: 12
