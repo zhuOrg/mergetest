@@ -1,6 +1,5 @@
 name: Delete branch
-on: [push, delete]
-
+on: check_suite
 jobs:
   build-and-test:
     
