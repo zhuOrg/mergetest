@@ -1,36 +1,70 @@
 name: Node CI 1205
 
-on: check_suite
+on: push
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-
     - uses: actions/checkout@v1
-
     - uses: actions/setup-node@v1
-
       with:
-
         node-version: 12
-
         registry-url: 'https://registry.npmjs.org'
-
       env:
-
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
-
-    - name : "instll npm"
+    - uses: actions/cache@v1
+      id: restore-cache
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name : "install npm"
+      if: steps.restore-cache.outputs.cache-hit != 'true'
       run: |
           npm install
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+    - name: update npm package
+      run: npm update 
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+    # Artifact name
+        name: package-lock
+    # Directory containing files to upload
+        path: ${{github.workspace}}
+    
 # `npm rebuild` will run all those post-install scripts for us.
 
-    - run: npm rebuild && npm run prepare --if-present
+#    - run: npm rebuild && npm run prepare --if-present
+  two:
+     needs: [build]
+     if: 1!=1
+     runs-on: ubuntu-latest
+     steps:
+     - uses: actions/checkout@v1   
+     - uses: actions/setup-node@v1
+       with:
+         node-version: 12
+         registry-url: 'https://registry.npmjs.org'
+     - uses: actions/cache@v1
+       id: restore-cache
+       with:
+         path: ~/.npm
+         key: ${{ runner.os }}-node-${{ hashFiles('dev.txt') }}
+         restore-keys: |
+            ${{ runner.os }}-node-
+     - name : "install npm"
+       if: steps.restore-cache.outputs.cache-hit != 'true'
+       run: |
+          cat /home/runner/work/_temp/.npmrc
+          npm install
+       env:
+         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+     

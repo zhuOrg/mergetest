@@ -1,6 +1,5 @@
-name: filter commit nessage
-on: pull_request
-
+name: Delete branch
+on: check_suite
 jobs:
   build-and-test:
     
@@ -8,17 +7,5 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         
-      - name : GITHUB CONTEXT
-        env: 
-          GITHUB_CONTEXT: ${{ toJson(github) }} 
-        run: echo "$GITHUB_CONTEXT" 
-        
-      - name: get commit message
-        run: |
-           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
-      - name: show commit message
-        run : echo $commitmsg
-      - name: step1
-        if: contains( env.commitmsg , 'try' )
-        run: echo hello
+
       
