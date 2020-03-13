@@ -34,6 +34,9 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: update npm package
       run: npm update 
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
