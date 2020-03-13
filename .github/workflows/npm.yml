@@ -12,8 +12,6 @@ jobs:
     steps:
 
     - uses: actions/checkout@v1
-    - name: Try to fail
-      run: exit 1
     - uses: actions/setup-node@v1
       with:
         node-version: 12
@@ -34,6 +32,13 @@ jobs:
           npm install
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+    # Artifact name
+        name: package-lock
+    # Directory containing files to upload
+        path: ${{github.workspace}}
     
 # `npm rebuild` will run all those post-install scripts for us.
 
