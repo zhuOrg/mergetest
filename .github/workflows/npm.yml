@@ -1,16 +1,11 @@
 name: Node CI 1205
 
 on: push
-env: 
-  TestVar: ${{ secrets.PackagePAT}}  
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
@@ -28,7 +23,6 @@ jobs:
     - name : "install npm"
       if: steps.restore-cache.outputs.cache-hit != 'true'
       run: |
-          cat /home/runner/work/_temp/.npmrc
           npm install
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
