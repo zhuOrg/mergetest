@@ -1,3 +1,4 @@
 *.cab filter=lfs diff=lfs merge=lfs -text
 vc_red.cab filter=lfs diff=lfs merge=lfs -text
 VC_RED.cab filter=lfs diff=lfs merge=lfs -text
+testlfs.exe filter=lfs diff=lfs merge=lfs -text
