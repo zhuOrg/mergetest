@@ -1,13 +1,12 @@
 name: lfs checkout
-on: push
+on: check_suite
 jobs:
   build-and-test:
     
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        with:
-          lfs: true
+    
         
 
       
