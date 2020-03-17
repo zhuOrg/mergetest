@@ -1,6 +1,6 @@
-name: Node CI 1205
+name: node ci 1205
 
-on: check_suite
+on: push
 
 jobs:
   build:
