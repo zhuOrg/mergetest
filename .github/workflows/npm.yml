@@ -1,6 +1,6 @@
 name: node ci 1205
 
-on: check_suite
+on: push
 
 jobs:
   build:
@@ -31,20 +31,19 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
+    #- name: Upload artifact
+    #  uses: actions/upload-artifact@v1.0.0
+    #  with:
     # Artifact name
-        name: package-lock
+    #    name: package-lock
     # Directory containing files to upload
-        path: ${{github.workspace}}
+    #    path: ${{github.workspace}}
     
 # `npm rebuild` will run all those post-install scripts for us.
 
 #    - run: npm rebuild && npm run prepare --if-present
   two:
      needs: [build]
-     if: 1!=1
      runs-on: ubuntu-latest
      steps:
      - uses: actions/checkout@v1   
@@ -56,7 +55,7 @@ jobs:
        id: restore-cache
        with:
          path: ~/.npm
-         key: ${{ runner.os }}-node-${{ hashFiles('dev.txt') }}
+         key:  ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
          restore-keys: |
             ${{ runner.os }}-node-
      - name : "install npm"
