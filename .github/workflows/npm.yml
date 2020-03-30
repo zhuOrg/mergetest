@@ -17,7 +17,7 @@ jobs:
       id: restore-cache
       with:
         path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        key: ${{ runner.os }}-node-${{ hashFiles('dev.txt') }}
         restore-keys: |
           ${{ runner.os }}-node-
     - name : "install npm"
@@ -55,7 +55,7 @@ jobs:
        id: restore-cache
        with:
          path: ~/.npm
-         key:  ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+         key:  ${{ runner.os }}-node-${{ hashFiles('dev.txt') }}
          restore-keys: |
             ${{ runner.os }}-node-
      - name : "install npm"
