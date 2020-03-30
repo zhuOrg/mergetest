@@ -2,7 +2,7 @@ name: trigger by another workflow
 
 on:
   pull_request:
-    types: [closed]
+    types: [edited]
 
 env:
   NODE_VERSION: 12.x
@@ -10,11 +10,14 @@ env:
 jobs:
   deploy:
     name: Deploy
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: | 
+          echo "$GITHUB_CONTEXT"
+          commits=${{ join(github.event.pull_request.labels.*.name, ', ') }}
+          echo $commits
+  
