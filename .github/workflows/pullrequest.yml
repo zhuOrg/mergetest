@@ -19,5 +19,6 @@ jobs:
       - name: git command
         run: | 
            git fetch origin master:master
-           git rev-parse --abbrev-ref HEAD
+           git log master
+           git log dev
            git merge-base --fork-point master
