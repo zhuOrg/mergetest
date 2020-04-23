@@ -16,9 +16,9 @@ jobs:
         node-version: 12
         registry-url: 'https://registry.npmjs.org'
 
-    #- uses: webfactory/ssh-agent@v0.2.0
-    #  with:
-    #    ssh-private-key: ${{ secrets.private_ssh }}
+    - uses: webfactory/ssh-agent@v0.2.0
+      with:
+        ssh-private-key: ${{ secrets.private_ssh }}
 
     - name: Install dependencies
       run: yarn install
