@@ -20,7 +20,7 @@
   "license": "ISC",
 
   "dependencies": {
-    "bar": "git@github.com:Yanjingzhu/npmPackages.git",
+    "npmPackages": "git@github.com:Yanjingzhu/npmPackages.git",
     "foo" : "1.0.0 - 2.9999.9999"
   }
 
