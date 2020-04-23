@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: git command
         run: | 
-           git fetch origin master:master
+           git checkout dev
     
            git merge-base --fork-point master
            
