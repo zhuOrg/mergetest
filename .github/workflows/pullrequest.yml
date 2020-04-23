@@ -19,8 +19,5 @@ jobs:
       - name: git command
         run: | 
            git fetch origin master:master
-           git log master -10
-           echo "hello ========="
-           git log -10
-           echo "hello ========="
-           git merge-base --fork-point master
+    
+           git merge-base --fork-point master dev
