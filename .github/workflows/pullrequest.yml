@@ -1,7 +1,7 @@
 name: trigger by another workflow
 
 on:
-  pull_request:
+  push:
 
 
 env:
