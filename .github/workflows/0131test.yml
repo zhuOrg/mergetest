@@ -1,9 +1,10 @@
 name: PR merge
 on:
-  pull_request:
-    types: [opened,ready_for_review,edited]
-    branches:
-      - master
+  chceck_suite:
+  #pull_request:
+   # types: [opened,ready_for_review,edited]
+    #branches:
+     # - master
 jobs:
  merge:
     name: Merge pull request
