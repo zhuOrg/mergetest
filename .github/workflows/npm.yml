@@ -2,7 +2,9 @@ name: node ci 1205
 
 on: 
   push:
-    paths: 'dev.txt'
+    paths: 
+     - 'dev.txt'
+     - '.github/workflows/npm.yml'
 
 jobs:
   build:
