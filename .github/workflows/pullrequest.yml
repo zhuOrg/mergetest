@@ -19,4 +19,4 @@ jobs:
       - name: git command
         run: | 
            git fetch origin master:master
-           git merge-base --fork-point master
+           git merge-base --fork-point dev
