@@ -18,6 +18,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: git command
         run: | 
-           git fetch origin master
+           git fetch origin master:master
            git rev-parse --abbrev-ref HEAD
-           git merge-base --fork-point dev
+           git merge-base --fork-point master
