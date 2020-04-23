@@ -17,5 +17,5 @@ jobs:
       - name: git command
         run: | 
            git checkout origin/dev    
-           git merge-base --fork-point master
+           git merge-base --fork-point origin/master
            
