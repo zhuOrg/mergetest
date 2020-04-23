@@ -20,7 +20,7 @@ jobs:
         ssh-private-key: ${{ secrets.private_ssh }}
 
     - name: Install dependencies
-      run: yarn install
+      run: npm install
       
  
 
