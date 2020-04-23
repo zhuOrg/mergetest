@@ -20,5 +20,5 @@ jobs:
         run: | 
            git fetch origin master:master
     
-           git merge-base --fork-point 
+           git merge-base --fork-point origin/master dev
            
