@@ -1,18 +1,46 @@
+
 name: trigger by another workflow
 
+
+
 on:
+
   pull_request:
 
 
+
+
+
 env:
+
   NODE_VERSION: 12.x
 
+
+
 jobs:
+
   deploy:
+
     name: merge
+
     runs-on: ubuntu-latest
+
     timeout-minutes: 10
+
     steps:
+
+      - uses: actions/checkout@v2
+
+        with:
+
+          ref: ${{ github.event.pull_request.head.ref }}
+
+          fetch-depth: 0 
+
       - name: git command
+
         run: | 
-          git merge-base --fork-point master
+
+           git fetch origin master:master
+
+           git merge-base --fork-point master
