@@ -2,22 +2,17 @@ name: trigger by another workflow
 
 on:
   pull_request:
-    types: [edited]
+
 
 env:
   NODE_VERSION: 12.x
 
 jobs:
   deploy:
-    name: Deploy
+    name: merge
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - name: git command
         run: | 
-          echo "$GITHUB_CONTEXT"
-          commits=${{ join(github.event.pull_request.labels.*.name, ', ') }}
-          echo $commits
-  
+          git merge-base --fork-point master
