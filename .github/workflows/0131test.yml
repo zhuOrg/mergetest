@@ -1,6 +1,6 @@
 name: PR merge
 on:
-  chceck_suite:
+  check_suite:
   #pull_request:
    # types: [opened,ready_for_review,edited]
     #branches:
