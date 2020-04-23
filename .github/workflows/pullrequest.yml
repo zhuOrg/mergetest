@@ -1,7 +1,7 @@
 name: trigger by another workflow
 
 on:
-  push:
+  pull_request:
 
 
 env:
@@ -13,9 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: git command
         run: | 
-           git checkout origin/dev    
-           git merge-base --fork-point origin/master
+           git fetch origin master:master
+           git merge-base --fork-point master
            
