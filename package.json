@@ -20,12 +20,8 @@
   "license": "ISC",
 
   "dependencies": {
-
-    "@zhuorg/customepack": ">=1.0.0",
     "bar": "git@github.com:Yanjingzhu/npmPackages.git",
-    "@zhuorg/yannpm": "1.0.2",
     "foo" : "1.0.0 - 2.9999.9999"
-
   }
 
 }
