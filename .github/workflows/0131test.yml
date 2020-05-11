@@ -1,23 +1,43 @@
 name: PR merge
 on:
-  check_suite:
+  push:
   #pull_request:
   #  types: [opened,ready_for_review,edited]
   #  branches:
   #   - master
 jobs:
- merge:
-    name: Merge pull request
+  main:
+    name: main
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
-      - name: Merge
-        uses: actions/github-script@0.8.0
+      - uses: actions/checkout@v1
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node_modules
+        id: yarn-cache
+        uses: actions/cache@v1
         with:
-          script: |
-            await github.pulls.merge({
-              owner: context.payload.repository.owner.login,
-              repo: context.payload.repository.name,
-              pull_number: context.payload.pull_request.number
-            })
-          github-token: "${{ secrets.PackagePAT }}"
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+
+      - name: Run eslint
+        run: yarn lint
+
+      - name: Run Jest
+        run: yarn test
+
+      - name: Upload test coverage artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: coverage
+          path: coverage
