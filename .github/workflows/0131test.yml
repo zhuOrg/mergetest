@@ -16,7 +16,8 @@ jobs:
         id: yarn-cache-dir-path
         run: | 
            echo "::set-output name=dir::$(yarn cache dir)"
-           yarn add eslint --dev
+           npm install -g eslint
+           which eslint
       - name: Cache node_modules
         id: yarn-cache
         uses: actions/cache@v1
@@ -25,7 +26,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/dev.txt') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - run: which eslint
       - name: yarn install
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
