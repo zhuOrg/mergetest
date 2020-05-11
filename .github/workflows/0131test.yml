@@ -16,8 +16,7 @@ jobs:
         id: yarn-cache-dir-path
         run: | 
            echo "::set-output name=dir::$(yarn cache dir)"
-           yarn add eslint --dev
-
+      
       - name: Cache node_modules
         id: yarn-cache
         uses: actions/cache@v1
@@ -32,8 +31,8 @@ jobs:
         run: yarn install
 
 
-#       - name: Run eslint
-#         run: yarn lint
+      - name: Run eslint
+        run: eslint --ext .ts,.js,.vue .
 
 #       - name: Run Jest
 #         run: yarn test
