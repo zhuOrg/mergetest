@@ -30,14 +30,14 @@ jobs:
         run: yarn install
 
 
-      - name: Run eslint
-        run: yarn lint
+#       - name: Run eslint
+#         run: yarn lint
 
-      - name: Run Jest
-        run: yarn test
+#       - name: Run Jest
+#         run: yarn test
 
-      - name: Upload test coverage artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: coverage
-          path: coverage
+#       - name: Upload test coverage artifact
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: coverage
+#           path: coverage
