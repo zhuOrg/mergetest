@@ -18,7 +18,7 @@ jobs:
       - name: Check Shared
         id: shared
         run: |
-          echo "::set-output name=matches::true"
+          echo "::set-output name=matches::false"
       - name: Check service_a
         id: service_a
         run: |
