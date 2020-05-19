@@ -15,14 +15,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - name: Check Shared
-        id: shared
-        run: |
-          echo "::set-output name=matches::false"
-      - name: Check service_a
-        id: service_a
-        run: |
-          echo "::set-output name=matches::false" 
+#       - name: Check Shared
+#         id: shared
+#         run: |
+#           echo "::set-output name=matches::false"
+#       - name: Check service_a
+#         id: service_a
+#         run: |
+#           echo "::set-output name=matches::false" 
       - name: Check service_b
         id: service_b
         run: |
@@ -37,6 +37,6 @@ jobs:
     needs: gather_diffs
     
     steps:
-      - if: " needs.gather_diffs.outputs.all == 'true' || needs.gather_diffs.outputs.service_a == 'true' " 
+      - if: " needs.gather_diffs.outputs.all  || needs.gather_diffs.outputs.service_a  " 
         run: echo "service_a will deploy"
   
