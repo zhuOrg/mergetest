@@ -37,6 +37,6 @@ jobs:
     needs: gather_diffs
     
     steps:
-      - if: " needs.gather_diffs.outputs.all || needs.gather_diffs.outputs.service_a " 
+      - if: " needs.gather_diffs.outputs.all == 'true' || needs.gather_diffs.outputs.service_a == 'true' " 
         run: echo "service_a will deploy"
   
