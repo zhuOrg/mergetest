@@ -1,6 +1,6 @@
 name: PR merge
 on:
-  push:
+  repository_dispatch:
   #pull_request:
   #  types: [opened,ready_for_review,edited]
   #  branches:
