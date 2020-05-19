@@ -18,11 +18,11 @@ jobs:
       - name: Check Shared
         id: shared
         run: |
-          echo "::set-output name=matches::'false'"
+          echo "::set-output name=matches::0"
       - name: Check service_a
         id: service_a
         run: |
-          echo "::set-output name=matches::'false'" 
+          echo "::set-output name=matches::0" 
       - name: Check service_b
         id: service_b
         run: |
@@ -35,7 +35,8 @@ jobs:
   service_a:
     runs-on: ubuntu-latest
     needs: gather_diffs
-    if: " needs.gather_diffs.outputs.all || needs.gather_diffs.outputs.service_a " 
+    
     steps:
-      - run: echo "service_a will deploy"
+      - if: " needs.gather_diffs.outputs.all || needs.gather_diffs.outputs.service_a " 
+        run: echo "service_a will deploy"
   
