@@ -1,44 +1,41 @@
 name: PR merge
 on:
-  repository_dispatch:
-  #pull_request:
-  #  types: [opened,ready_for_review,edited]
-  #  branches:
-  #   - master
+  push:
 jobs:
-  main:
-    name: main
+  gather_diffs:
     runs-on: ubuntu-latest
+    outputs:
+      all: ${{ steps.shared.outputs.matches }}
+      service_a: ${{ steps.service_a.outputs.matches }}
+      service_b: ${{ steps.service_b.outputs.matches }}
+      service_c: ${{ steps.service_c.outputs.matches }}
+      service_d: ${{ steps.service_d.outputs.matches }}
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: | 
-           echo "::set-output name=dir::$(yarn cache dir)"
-           npm install -g eslint
-           which eslint
-      - name: Cache node_modules
-        id: yarn-cache
-        uses: actions/cache@v1
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/dev.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: yarn install
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install
+          fetch-depth: 2
+      - name: Check Shared
+        id: shared
+        run: |
+          echo "::set-output name=matches::true
+      - name: Check service_a
+        id: service_a
+        run: |
+          echo "::set-output name=matches::false" 
+      - name: Check service_b
+        id: service_b
+        run: |
+          echo "::set-output name=matches::true"
+      - name: Check service_c
+        id: service_c
+        run: |
+          echo "::set-output name=matches::false"
 
-
-      - name: Run eslint
-        run: eslint --ext .ts,.js,.vue .
-
-#       - name: Run Jest
-#         run: yarn test
-
-#       - name: Upload test coverage artifact
-#         uses: actions/upload-artifact@v1
-#         with:
-#           name: coverage
-#           path: coverage
+  service_a:
+    runs-on: ubuntu-latest
+    needs: gather_diffs
+    if: needs.gather_diffs.outputs.all || needs.gather_diffs.outputs.service_a
+    steps:
+      - run: echo "service_a will deploy"
+  
