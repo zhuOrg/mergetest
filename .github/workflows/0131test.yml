@@ -42,3 +42,5 @@ jobs:
     needs: [gather_diffs, service_a]
     runs-on: ubuntu-latest
     if: " needs.gather_diffs.outputs.all  || needs.gather_diffs.outputs.service_a  " 
+    steps:
+     - run: echo "service_b will deploy"
