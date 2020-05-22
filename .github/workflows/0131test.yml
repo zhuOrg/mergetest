@@ -1,6 +1,6 @@
 name: PR merge
 on:
-  push:
+  repository_dispatch:
 jobs:
   gather_diffs:
     runs-on: ubuntu-latest
