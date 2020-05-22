@@ -3,12 +3,13 @@ on: push
 
 jobs:
   run_bash:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: run bash
         run: | 
-           if [[ "${#TAG_LIST[@]}" -ne 3 ]]; then
+           if [[ "${#TAG_LIST[@]}" -ne 3 ]]; 
+           then
                  echo "$RELEASE_VERSION is not a valid semantic version"
                  exit 1
            fi
