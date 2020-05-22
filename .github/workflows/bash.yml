@@ -1,0 +1,11 @@
+name: test bash
+on: push
+
+jobs:
+  run_bash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run bash
+        run: | 
+           [[ "${#TAG_LIST[@]}" -ne 3 ]] && echo "$RELEASE_VERSION is not a valid semantic version" && exit 1
