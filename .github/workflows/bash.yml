@@ -8,4 +8,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: run bash
         run: | 
-           [[ "${#TAG_LIST[@]}" -ne 3 ]] && echo "$RELEASE_VERSION is not a valid semantic version" && exit 1
+           if [[ "${#TAG_LIST[@]}" -ne 3 ]]; then
+                 echo "$RELEASE_VERSION is not a valid semantic version"
+                 exit 1
+           fi
