@@ -1,5 +1,5 @@
 name: test bash
-on: push
+on: project_card
 
 jobs:
   run_bash:
